@@ -25,7 +25,10 @@ class SetClass{
         return Object.keys(this.items).length
     }
     printSet(){
-        return Array(this.items).values()
+        return Object.entries(this.items)
+    }
+    getItems(){
+        return this.items
     }
 }
 
@@ -43,6 +46,9 @@ p.append(15)
 p.append(50)
 
 
-for(let x of Object.entries(s.items)){
-    console.log(x)
-}
+// for(let x in s.items){
+//     console.log(x)
+// }
+
+
+console.log(s.getItems())
