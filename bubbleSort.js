@@ -49,6 +49,19 @@ class List{
         }
 
     }
+    insertionSort(){
+        let length=this.items.length,j,temp
+        for(let i=1;i<length;++i){
+            j=i
+            temp=this.items[i]
+            while(j>0  && this.items[j-1] > temp){
+                this.items[j]=this.items[j-1]
+                j--
+            }
+            this.items[j]=temp
+        }
+
+    }
 }
 
 
