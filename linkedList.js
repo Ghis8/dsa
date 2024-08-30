@@ -11,22 +11,67 @@ class LinkedList{
         this.size=0
     }
     append(element){
-        let newNode=new Node(element)
+        let newNode=new Node(element),current
         if(this.head== null){
             this.head=newNode
         }else{
-            let current=this.head
-            //traverse the list
+            current=this.head
             while(current.next){
                 current=current.next
             }
-            // set the next pointer to  the last node
-            current=newNode
+            current.next=newNode
         }
-
         this.size++
     }   
-    
+    removeAt(position){
+        if(position > -1 && position < this.size){
+            let current=this.head,
+            previous,
+            index=0 
+            if(position === 0){
+                this.head=current.next
+            }else{
+             while(index++ < position){
+                previous=current 
+                current=current.next
+             }   
+            }
+            this.size--
+            return current.element
+        }else{
+            return null
+        }
+        
+    }
+    insert(position,element){
+        if(position >=0 && position <=this.size){
+            let node=new Node(element),current=head,previous,index=0
+            if(position === 0){
+                node.next=current
+                this.head=node 
+            }else{
+                while (index ++ < position){
+                    previous=current 
+                    current=current.next
+                }
+                node.next=current
+                previous.next=node
+            }
+            this.size++
+            return true
+        }else{
+            return false
+        }
+    }
+    toString(){
+        let current=head, 
+        string=''
+        while(current){
+            string+=current.element + (current.next ? 'n':'')
+            current=current.next
+        }
+        return string
+    }
 }
 
 class DoubleLinkedList{
@@ -37,11 +82,3 @@ class DoubleLinkedList{
     }
 }
 
-// let linkedList=new LinkedList()
-
-// linkedList.append(10)
-// linkedList.append(15)
-// linkedList.append(30)
-// linkedList.append(25)
-
-// linkedList.printList()
