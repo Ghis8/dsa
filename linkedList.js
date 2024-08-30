@@ -26,15 +26,7 @@ class LinkedList{
 
         this.size++
     }   
-    printList(){
-        let current=this.head 
-        let nodes=[]
-        while(current){
-            nodes.push(current.element)
-            current=current.next 
-        }
-        console.log(nodes.join('->'))
-    }
+    
 }
 
 class DoubleLinkedList{
