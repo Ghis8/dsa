@@ -5,6 +5,10 @@ class Node{
     }
 }
 
+/* The class LinkedList represents a linked list data structure in JavaScript with methods for
+appending, removing at a specific position, inserting at a specific position, and converting the
+list to a string. */
+
 class LinkedList{
     constructor(){
         this.head=null 
