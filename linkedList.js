@@ -1,14 +1,13 @@
+//! NODE
 class Node{
     constructor(element){
         this.element=element
         this.next=null
+        
     }
 }
 
-/* The class LinkedList represents a linked list data structure in JavaScript with methods for
-appending, removing at a specific position, inserting at a specific position, and converting the
-list to a string. */
-
+//! LINKED LIST
 class LinkedList{
     constructor(){
         this.head=null 
@@ -68,13 +67,44 @@ class LinkedList{
         }
     }
     toString(){
-        let current=head, 
+        let current=this.head, 
         string=''
         while(current){
-            string+=current.element + (current.next ? 'n':'')
+            string+=current.element + (current.next ? '->':'')
             current=current.next
         }
         return string
+    }
+    indexOf(element){
+        let current=this.head,index=-1
+        while(current){
+            if(element === current.element){
+                return index
+            }
+            index++
+            current=current.next
+        }
+        return -1
+    }
+    remove(element){
+        let index=this.indexOf(element)
+        return this.removeAt(index)
+    }
+    isEmpty(){
+        return this.size === 0
+    }
+    getHead(){
+        return this.head
+    }
+
+}
+
+//! DOUBLE LINKED LIST
+class DNode{
+    constructor(element){
+        this.element=this.element
+        this.next=null 
+        this.prev=null
     }
 }
 
@@ -84,5 +114,55 @@ class DoubleLinkedList{
         this.tail=null 
         this.size=0
     }
+    insertAt(position,element){
+        if(position >=0  && position<=this.size){
+            let node=new DNode(element),
+            current=this.head,
+            previous,
+            index=0
+            if(position ===0){
+                if(!this.head){
+                    this.head=node 
+                    this.tail=node
+                }else{
+                    node.next=current
+                    current.prev=node 
+                    this.head=node
+                }
+            }else  if(position === this.size){
+                current=this.tail 
+                current.next=node 
+                node.prev=current.next
+                this.tail=node
+            }else{
+                while(index ++ < position){
+                    previous=current
+                    current=current.next 
+                }
+                node.next = current 
+                previous.next = node
+                current.prev = node
+                node.prev = previous  
+            }
+            this.size ++ 
+            return true
+            
+        }else{
+            return false
+        }
+    }
+    
 }
 
+
+//! TEST
+let list=new LinkedList()
+
+list.append(15)
+list.append(10)
+list.append(12)
+list.append(17)
+list.append(22)
+list.append(11)
+
+console.log(list.getHead())
