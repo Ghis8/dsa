@@ -151,8 +151,42 @@ class DoubleLinkedList{
             return false
         }
     }
+    removeAt(position){
+        if(position > -1 && position < this.size){
+            let current=this.head,previous,index=0
+            
+            //remove 
+            if(position ==0 ){
+                this.head=current.next
+                if(this.size ===1){
+                    this.tail=null 
+
+                }else{
+                    this.head.prev=null
+                }
+            }else if (position === this.size-1){
+                current = this.tail 
+                this.tail=current.prev 
+                this.tail.next=null
+            }else{
+                while(index ++ <position){
+                    previous=current 
+                    current=current.next
+                }
+                previous.next=current.next 
+                current.next.prev=previous
+            }
+            this.size++
+            return current.element
+
+        }else{
+            return null
+        }
+    }
     
 }
+
+
 
 
 //! TEST

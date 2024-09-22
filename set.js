@@ -1,3 +1,14 @@
+function djb2Hash(key){
+    let hash=5381
+    for(let i=0;i<key.length;i++){
+        hash= hash * 33 + key.charCodeAt(i)
+    }
+    return hash % 1013
+
+}
+
+
+
 class SetClass{
     constructor(){
         this.items={}
@@ -30,6 +41,9 @@ class SetClass{
     getItems(){
         return this.items
     }
+    getValues(){
+        return Object.values(this.items)
+    }
 }
 
 let s=new SetClass()
@@ -50,5 +64,6 @@ p.append(50)
 //     console.log(x)
 // }
 
+console.log(union(s,p))
 
-console.log(s.getItems())
+// console.log(s.getValues())
