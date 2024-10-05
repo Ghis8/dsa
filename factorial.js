@@ -4,4 +4,7 @@ function factorial(n){
     }
     return n*factorial(n-1)
 }
-console.log(BigInt(factorial(50)))
+// console.log(BigInt(factorial(50)))
+
+
+module.exports=factorial

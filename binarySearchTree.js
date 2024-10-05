@@ -34,6 +34,26 @@ class BinarySearchTree{
             }
         }
     }
+
+    // adelson velskii and landi tree
+    insertAVLNode(node,element){
+        if(node ==null){
+            node=new Node(element)
+        }else if (element < node.key){
+            node.left=this.insertAVLNode(node.left,element)
+            if(node.left !== null){
+
+            }
+        }else if (element > node.key){
+            node.right =this.insertAVLNode(node.right,element)
+            if (node.right !== null){
+
+            }
+        }
+        return node
+    }
+
+
     inOrderTraverse(callback){
         this.inOrderTraverseNode(this.root,callback)
     }
@@ -104,7 +124,51 @@ class BinarySearchTree{
             return true
         }
     }
+    remove(key){
+        this.root=this.removeNode(this.root,key)
+    }
+    removeNode(node,key){
+        if(node == null){
+            return null
+        }else if(key < node.key){
+            node.left=this.removeNode(node.left,key)
+            return node
+        }else if(key > node.key){
+            node.right=this.removeNode(node.right,key)
+            return node
+        }else{
+            if(node.left == null && node.right ==null){
+                node=null 
+                return node
+            }
+            if(node.left == null){
+                node=node.right 
+                return node 
+            }
+            else if(node.right == null){
+                node=node.left 
+                return node
+            }
 
+            let aux=this.findMinNode(node.right)
+            node.key=aux.key
+            node.right=this.removeNode(node.right, aux.key)
+            return node
+        }
+    }
+    findMinNode(node){
+        while(node && node.left !== null){
+            node=node.left
+        }
+        return node
+    }
+    heightNode(node){
+        if(node ===null){
+            return -1
+        }else{
+            return Math.max(this.heightNode(node.left),this.heightNode(node.right))+1
+        }
+    }
     printNode(value){
         console.log(value)
     }
@@ -130,4 +194,4 @@ tree.insert(6)
 
 // tree.postOrderTraverse(tree.printNode)
 // console.log(tree.findMax())
-console.log(tree.search(4))
+// console.log(tree.heightNode(7))
